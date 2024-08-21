@@ -1,6 +1,6 @@
 "use strict";
 /*
-// select element with the class name of message (if it was an id #message) and then selecting the textContent property by using another .
+select element with the class name of message (if it was an id #message) and then selecting the textContent property by using another .
 console.log(document.querySelector(".message").textContent); // Start guessing...
 
 document.querySelector(".message").textContent = " 🎉 Correct Number!";
@@ -17,6 +17,16 @@ console.log(document.querySelector(".guess").value);
 document.querySelector(".check").addEventListener("click", function () {
   //   console.log(document.querySelector(".guess").value); // log for testing
 
+  // generate secretNumber bewtween 1 and 20
+  // syntax: Math.floor(Math.random() * max - min + 1) + min
+  // let secretNumber = function () {
+  //   return Math.floor(Math.random() * (20 - 1 + 1) + 1);
+  // };
+  let secretNumber = function () {
+    return Math.floor(Math.random() * (20 - 1 + 1) + 1);
+  };
+  console.log(secretNumber());
+
   // save value to a variable
   const guess = Number(document.querySelector(".guess").value); // convert string input to number for later comparisons
   console.log(guess, typeof guess);
@@ -24,6 +34,8 @@ document.querySelector(".check").addEventListener("click", function () {
   // implement game logic for no guess or if guess is outside of range
   if (!guess || guess < 1 || guess > 20) {
     document.querySelector(".message").textContent =
-      "🛑 Please guess a number between 1 and 20...";
+      "🛑 Guess a number between 1 and 20...";
+  } else if (guess == secretNumber) {
+    document.querySelector(".number").textContent = secretNumber();
   }
 });
