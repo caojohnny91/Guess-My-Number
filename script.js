@@ -39,15 +39,20 @@ document.querySelector(".check").addEventListener("click", function () {
     document.querySelector(".number").textContent = secretNumber;
     document.querySelector(".message").textContent = "🎉 Correct Number!";
   } else if (guess > secretNumber) {
-    document.querySelector(".message").textContent = "📈 Too High!";
+    if (score > 1) {
+      document.querySelector(".message").textContent = "📈 Too High!";
 
-    // logic to decrease score every time the check button is decreased
-    score = score - 1;
+      // logic to decrease score by 1 every time the check button is decreased
+      score--; // score = score - 1;
+    } else {
+      document.querySelector(".message").textContent = "🙈 You lost the game!";
+      document.querySelector(".score").textContent = 0;
+    }
   } else if (guess < secretNumber) {
     document.querySelector(".message").textContent = "📉 Too Low!";
 
-    // logic to decrease score every time the check button is decreased
-    score = score - 1;
+    // logic to decrease score by 1 every time the check button is decreased
+    score--; // score = score - 1;
   }
 
   // display score
