@@ -16,14 +16,14 @@ console.log(document.querySelector(".guess").value);
 // generate number bewtween 1 and 20
 // syntax: Math.floor(Math.random() * max - min + 1) + min
 // or syntax: Math.trunc(Math.random() * max) + 1
-const secretNumber = Math.trunc(Math.random() * 20) + 1;
+let secretNumber = Math.trunc(Math.random() * 20) + 1;
 console.log(secretNumber);
 
 // init score to 20
-let score = 20;
+let score = 10;
 
 // Implement event handler to check btn
-// select check class element, then add the addEventListener method (argument 1 (name of event to listen for): "click", argument 2 (reaction when event happens): function value)
+// select check class element, then add the addEventListener method (argument 1 (name of event to listen for): "click", argument 2 (reaction when event happens): handler function value)
 document.querySelector(".check").addEventListener("click", function () {
   //   console.log(document.querySelector(".guess").value); // log for testing
 
@@ -82,4 +82,16 @@ document.querySelector(".check").addEventListener("click", function () {
 
   // display score dynamically based on conditions
   document.querySelector(".score").textContent = score;
+});
+
+// Implement game RSET functionality:
+document.querySelector(".again").addEventListener("click", function () {
+  score = 10;
+  secretNumber = Math.trunc(Math.random() * 20) + 1;
+  document.querySelector(".message").textContent = "Start guessing...";
+  document.querySelector(".score").textContent = score;
+  document.querySelector(".number").textContent = "?";
+  document.querySelector(".guess").value = "";
+  document.querySelector("body").style.backgroundColor = "#222";
+  document.querySelector(".number").style.width = "15rem";
 });
