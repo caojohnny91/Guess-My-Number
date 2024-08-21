@@ -29,12 +29,16 @@ document.querySelector(".check").addEventListener("click", function () {
   const guess = Number(document.querySelector(".guess").value); // convert string input to number for later comparisons
   console.log(guess, typeof guess);
 
-  // implement game logic for no guess or if guess is outside of range
+  //   implement game logic for no guess or if guess is outside of range
   if (!guess || guess < 1 || guess > 20) {
     document.querySelector(".message").textContent =
       "🛑 Guess a number between 1 and 20...";
   } else if (guess == secretNumber) {
     document.querySelector(".number").textContent = secretNumber;
-    document.querySelector(".message").textContent = " 🎉 Correct Number!";
+    document.querySelector(".message").textContent = "🎉 Correct Number!";
+  } else if (guess > secretNumber) {
+    document.querySelector(".message").textContent = "📈 Too High!";
+  } else if (guess < secretNumber) {
+    document.querySelector(".message").textContent = "📉 Too Low!";
   }
 });
