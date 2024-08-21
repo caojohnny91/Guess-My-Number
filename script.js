@@ -16,9 +16,11 @@ console.log(document.querySelector(".guess").value);
 // generate number bewtween 1 and 20
 // syntax: Math.floor(Math.random() * max - min + 1) + min
 // or syntax: Math.trunc(Math.random() * max) + 1
-
 const secretNumber = Math.trunc(Math.random() * 20) + 1;
 console.log(secretNumber);
+
+// init score to 20
+let score = 20;
 
 // Implement event handler to check btn
 // select check class element, then add the addEventListener method (argument 1 (name of event to listen for): "click", argument 2 (reaction when event happens): function value)
@@ -38,7 +40,16 @@ document.querySelector(".check").addEventListener("click", function () {
     document.querySelector(".message").textContent = "🎉 Correct Number!";
   } else if (guess > secretNumber) {
     document.querySelector(".message").textContent = "📈 Too High!";
+
+    // logic to decrease score every time the check button is decreased
+    score = score - 1;
   } else if (guess < secretNumber) {
     document.querySelector(".message").textContent = "📉 Too Low!";
+
+    // logic to decrease score every time the check button is decreased
+    score = score - 1;
   }
+
+  // display score
+  document.querySelector(".score").textContent = score;
 });
