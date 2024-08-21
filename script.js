@@ -44,17 +44,21 @@ document.querySelector(".check").addEventListener("click", function () {
 
       // logic to decrease score by 1 every time the check button is decreased
       score--; // score = score - 1;
+      document.querySelector(".score").textContent = score;
     } else {
       document.querySelector(".message").textContent = "🙈 You lost the game!";
       document.querySelector(".score").textContent = 0;
     }
   } else if (guess < secretNumber) {
-    document.querySelector(".message").textContent = "📉 Too Low!";
+    if (score > 1) {
+      document.querySelector(".message").textContent = "📉 Too Low!";
 
-    // logic to decrease score by 1 every time the check button is decreased
-    score--; // score = score - 1;
+      // logic to decrease score by 1 every time the check button is decreased
+      score--; // score = score - 1;
+      document.querySelector(".score").textContent = score;
+    } else {
+      document.querySelector(".message").textContent = "🙈 You lost the game!";
+      document.querySelector(".score").textContent = 0;
+    }
   }
-
-  // display score
-  document.querySelector(".score").textContent = score;
 });
