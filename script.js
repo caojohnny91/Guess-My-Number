@@ -32,12 +32,22 @@ document.querySelector(".check").addEventListener("click", function () {
   console.log(guess, typeof guess);
 
   //   implement game logic for no guess or if guess is outside of range
+  // when input is incorrect
   if (!guess || guess < 1 || guess > 20) {
     document.querySelector(".message").textContent =
       "🛑 Guess a number between 1 and 20...";
+
+    // when player wins
   } else if (guess == secretNumber) {
-    document.querySelector(".number").textContent = secretNumber;
     document.querySelector(".message").textContent = "🎉 Correct Number!";
+    document.querySelector(".number").textContent = secretNumber;
+
+    // change background color (style property, then attribute in camelCase and then string of value)
+    document.querySelector("body").style.backgroundColor = "#60b347";
+    // enlarge .number box
+    document.querySelector(".number").style.width = "30rem";
+
+    // when guess is greater than secretNumber
   } else if (guess > secretNumber) {
     if (score > 1) {
       document.querySelector(".message").textContent = "📈 Too High!";
@@ -46,8 +56,14 @@ document.querySelector(".check").addEventListener("click", function () {
       score--; // score = score - 1;
     } else {
       document.querySelector(".message").textContent = "🙈 You lost the game!";
+      document.querySelector(".number").textContent = secretNumber;
+      document.querySelector("body").style.backgroundColor = "darkred";
+      document.querySelector(".number").style.width = "30rem";
+
       score = 0;
     }
+
+    // when guess is less than secretNumber
   } else if (guess < secretNumber) {
     if (score > 1) {
       document.querySelector(".message").textContent = "📉 Too Low!";
@@ -56,9 +72,14 @@ document.querySelector(".check").addEventListener("click", function () {
       score--; // score = score - 1;
     } else {
       document.querySelector(".message").textContent = "🙈 You lost the game!";
+      document.querySelector(".number").textContent = secretNumber;
+      document.querySelector("body").style.backgroundColor = "darkred";
+      document.querySelector(".number").style.width = "30rem";
+
       score = 0;
     }
   }
 
+  // display score dynamically based on conditions
   document.querySelector(".score").textContent = score;
 });
